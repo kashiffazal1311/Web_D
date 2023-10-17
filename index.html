@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words & Characters Count</title>
+    <style>
+        body {
+            background-color: khaki;
+        }
+
+        .container {
+            margin: 80px;
+            padding: 30px;
+            background-color: darksalmon;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
+        .textarea {
+            background-color: #dddddd;
+            color: #666666;
+            display: block;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1em;
+            outline: none;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            font-family: 'Consolas', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.5;
+            width: 400px;
+            height: 200px;
+            transition: all 0.2s;
+        }
+
+        .textarea:hover {
+            cursor: pointer;
+            background-color: #eeeeee;
+        }
+
+        .textarea:focus {
+            cursor: text;
+            color: #333333;
+            background-color: white;
+            border-color: #333333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Meta Description -->
+        <textarea class="textarea" id="input-field" placeholder="Enter your text here..."></textarea>
+
+        <!-- Words Counter -->
+        <div style="display: flex; align-items: center;">
+            <strong>Total Words:</strong>&nbsp;
+            <p id="word-count">0</p>
+        </div>
+
+        <!-- Characters Counter -->
+        <div style="display: flex; align-items: center;">
+            <strong>Total Characters:</strong>&nbsp;
+            <p id="char-count">0</p>
+        </div>
+    </div>
+
+    <script>
+        // Use either of document(getElementById and querySelector) to fetch the dom elements
+        const inputField = document.querySelector("#input-field");
+        const wordCount = document.querySelector("#word-count");
+        const charCount = document.querySelector("#char-count");
+
+        // Fucntion 1 for counting characters
+        const countCharacters = (str) => {
+            return typeof (str) === "string" && str.trim().length;
+        }
+
+        // Function 2 for counting words
+        const countWords = (str) => {
+            return typeof (str) === "string"
+                && str.trim().split(/\s+/).filter(st => st != '').length;
+        }
+
+        // Display total words and characters count
+        inputField.addEventListener("input", () => {
+            wordCount.innerHTML = countWords(inputField.value);
+            charCount.innerHTML = countCharacters(inputField.value);
+        })
+
+    </script>
+</body>
+
+</html>
